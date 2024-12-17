@@ -3,33 +3,6 @@ import { useState } from "react";
 import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 
-function App() {
-  const [pokemonIndex, setPokemonIndex] = useState(0);
-  const handlePrevious = () => {
-    setPokemonIndex(pokemonIndex > 0 ? pokemonIndex - 1 : 0);
-  };
-
-  const handleNext = () => {
-    setPokemonIndex(
-      pokemonIndex < pokemonList.length - 1 ? pokemonIndex + 1 : pokemonIndex,
-    );
-  };
-
-  return (
-    <>
-      <div>
-        <PokemonCard {...pokemonList[pokemonIndex]} />
-      </div>
-      <button type="button" onClick={handlePrevious}>
-        Précédent
-      </button>
-      <button type="button" onClick={handleNext}>
-        Suivant
-      </button>
-    </>
-  );
-}
-
 const pokemonList = [
   {
     name: "bulbasaur",
@@ -55,5 +28,28 @@ const pokemonList = [
     name: "mew",
   },
 ];
+
+function App() {
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+  const parcourir = (tableau) => {
+    return tableau.map((pokemon, index) => (
+      <button
+        type="button"
+        key={index}
+        onClick={() => setPokemonIndex(index)}
+        className={pokemonIndex === index ? "active" : ""}
+      >
+        {pokemon.name}
+      </button>
+    ));
+  };
+
+  return (
+    <div>
+      <nav>{parcourir(pokemonList)}</nav>
+      <PokemonCard {...pokemonList[pokemonIndex]} />
+    </div>
+  );
+}
 
 export default App;
