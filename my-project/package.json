@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "check": "biome check src",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "npx @biomejs/biome lint --write ./src",
+    "format": "npx @biomejs/biome format --write ./src"
   },
   "dependencies": {
     "react": "^18.3.1",
