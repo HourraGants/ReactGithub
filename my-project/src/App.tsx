@@ -35,7 +35,7 @@ function App() {
     return tableau.map((pokemon, index) => (
       <button
         type="button"
-        key={index}
+        key={pokemon.name}
         onClick={() => setPokemonIndex(index)}
         className={pokemonIndex === index ? "active" : ""}
       >
